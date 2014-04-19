@@ -17,7 +17,7 @@
 div.transbox
 {
   width: 1000px;
-  height: 170px;
+  min-height: 170px;
   margin: 30px 50px;
   background-color: #ffffff;
   border: 1px solid black;
@@ -28,6 +28,12 @@ div.transbox
   padding-bottom: center;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
+
+.tracker {
+  font-size: 23px;
+  color: #3399FF;
+  text-decoration: none; 
+}
 </style> 
  
  
@@ -35,7 +41,7 @@ div.transbox
 font-size: 54px; color: purple;
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;" class="transbox">
+  left: 0; right: 0;" class="transbox">
 <script type="text/javascript">
 var text=new Array();
 //Insert options like this:
@@ -47,6 +53,8 @@ text[4]="THE SECOND LINE NOLA IS COMING";
 text[5]="IS THAT A 2ND LINE I HEAR COMING?";
 document.write(text[Math.round(Math.random()*text.length-0.5)]);
 </script>
+<br>
+<a href="tracker.html" class="tracker">-> Follow the Pigeon Town Steppers Easter Parade <-</a>
 </div>
  
  

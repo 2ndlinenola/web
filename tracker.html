@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <style type="text/css">
+      html { height: 100% }
+      body {
+        background-image:url(img/tracker-bg.jpg); background-size: cover;
+        height: 100%;
+        margin: 0;
+        padding: 0 }
+
+      #map-canvas {
+        height: 500px;
+        margin-top: 23px;
+        margin-bottom: 23px;
+      }
+
+      .bg-tracker {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        background-color: rgba(252, 248, 227, 0.79);
+      }
+
+      .nav>li>a {
+        background-color: #eee;
+      }
+    </style>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://secondline-server.herokuapp.com/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          disableDefaultUI:   true,
+          draggable:          false,
+          overviewMapControl: false,
+          panControl:         false,
+          rotateControl:      false,
+          scaleControl:       false,
+          scrollwheel:        false,
+          streetViewControl:  false,
+          zoomControl:        false,
+          center: new google.maps.LatLng(29.947877,-90.114755),
+          zoom: 15
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+
+        var route = new google.maps.KmlLayer({
+          url: "http://mapsengine.google.com/map/u/0/kml?mid=zaIRRFV8XaRQ.k2GoQJ3ppZFs"
+        });
+        route.setMap(map);
+
+        var marker = null;
+        
+        var socket = io.connect("http://secondline-server.herokuapp.com",{
+          port: 80, transports: ["xhr-polling"]
+        });
+
+        socket.on("clear", function () {
+          if (marker) {
+            marker.setMap(null);
+            marker = null;
+          }
+        });
+
+        socket.on("position", function (position) {
+          if (marker) {
+            marker.setMap(null);
+            marker = null;
+          }
+
+          var position = new google.maps.LatLng(position.latitude, position.longitude);
+
+          marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: "position"
+          });
+
+          map.setCenter(position);
+          map.setZoom(15);
+        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8 text-center bg-tracker">
+          <h3>Pigeon Town Steppers Parade Tracker</h3>
+          <span class="help-block">Where the buckjumpers at?</span>
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tracker" data-toggle="tab">Tracker</a></li>
+            <li><a href="#social" data-toggle="tab">Social feed</a></li>
+          </ul>
+        
+          <div class="tab-content">
+            <div class="tab-pane active" id="tracker">
+              <div id="map-canvas"/></div>
+            </div>
+            <div class="tab-pane text-center" id="social">
+              <a class="twitter-timeline" href="https://twitter.com/search?q=%23secondline" data-widget-id="457298748150796290">#secondline Twitter Feed</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
