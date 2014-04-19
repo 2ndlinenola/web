@@ -3,6 +3,7 @@
 <link rel="shortcut icon" href="img/2ndline.ico">
 <link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
 <script type="text/javascript" src="css/lightbox.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head><body style="background-image:url(img/2ndlineBackground.jpg); background-size: cover;">
 
 <div align="right"> 
@@ -19,9 +20,8 @@ div.transbox
   width: 1000px;
   min-height: 170px;
   margin: 30px 50px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.63);
   border: 1px solid black;
-  opacity:0.6;
   text-align: center;
   padding-top: center;
   vertical-align: center;
@@ -30,31 +30,45 @@ div.transbox
 }
 
 .tracker {
+  display: block;
   font-size: 23px;
   color: #3399FF;
   text-decoration: none; 
+  margin-bottom: 23px;
+}
+
+h3 {
+  margin-top: 23px;
+  margin-bottom: 23px;
 }
 </style> 
  
+<script type="text/javascript">
+  var text=new Array();
+  //Insert options like this:
+  text[0]="FOLLOW THE 2nd LINE NOLA";
+  text[1]="Find Us... Follow Us... Join Us!";
+  text[2]="SHOULD ONLY TAKE A 2ND";
+  text[3]="GETTING READY TO ROLL";
+  text[4]="THE SECOND LINE NOLA IS COMING";
+  text[5]="IS THAT A 2ND LINE I HEAR COMING?";
+  
+  $(function() {
+    $("#headline").text(text[Math.round(Math.random()*text.length-0.5)]);
+  });
+</script>
  
 <div align="center" style="font-family: Arial Black; 
 font-size: 54px; color: purple;
   margin: auto;
   position: absolute;
   left: 0; right: 0;" class="transbox">
-<script type="text/javascript">
-var text=new Array();
-//Insert options like this:
-text[0]="FOLLOW THE 2nd LINE NOLA";
-text[1]="Find Us... Follow Us... Join Us!";
-text[2]="SHOULD ONLY TAKE A 2ND";
-text[3]="GETTING READY TO ROLL";
-text[4]="THE SECOND LINE NOLA IS COMING";
-text[5]="IS THAT A 2ND LINE I HEAR COMING?";
-document.write(text[Math.round(Math.random()*text.length-0.5)]);
-</script>
-<br>
-<a href="tracker.html" class="tracker">-> Follow the Pigeon Town Steppers Easter Parade <-</a>
+<span class="content">
+  <h3 id="headline">THE SECOND LINE NOLA IS COMING</h3>
+  <span class="tracker">
+    <a href="tracker.html" class="tracker">-&gt; Follow the Pigeon Town Steppers Easter Parade &lt;-</a>
+  </span>
+</span>
 </div>
  
  
