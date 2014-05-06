@@ -49,19 +49,14 @@ body {
     <td>&nbsp;</td>
     <td><div align="right"><img src="img/FoodTile.gif" width="350" height="224"  alt=""/></div></td>
     <td>&nbsp;</td>
-    <td>
-	 <div class="tab-pane text-center" id="social">
-              <a class="twitter-timeline" href="https://twitter.com/search?q=%232ndLine+OR+%23secondline+OR+%23secondlinesunday+OR+%232ndLineNOLA" data-widget-id="457545071571644417">Second Line Tweets</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
-    </td>
+    <td><img src="SocialTile.gif" width="350" height="224"  alt=""/></td>
     <td>&nbsp;</td>
   </tr>
   <tr bgcolor="#FFFFFF">
     <td>&nbsp;</td>
-    <td><div align="right"><img src="img/MerchTile.jpg" width="350" height="226"  alt=""/></div></td>
+    <td><div align="right"><img src="MerchTile.jpg" width="350" height="226"  alt=""/></div></td>
     <td>&nbsp;</td>
-    <td><img src="img/AdTile.gif" width="350" height="226"  alt=""/></td>
+    <td><img src="AdTile.gif" width="350" height="226"  alt=""/></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
