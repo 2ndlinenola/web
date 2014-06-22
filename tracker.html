@@ -34,6 +34,7 @@
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="http://secondline-server.herokuapp.com/socket.io/socket.io.js"></script>
 
     <script type="text/javascript"
@@ -42,29 +43,24 @@
 
     <script type="text/javascript">
       function initialize() {
-        var mapOptions = {
-          disableDefaultUI:   true,
-          draggable:          false,
-          overviewMapControl: false,
-          panControl:         true,
-          rotateControl:      false,
-          scaleControl:       false,
-          scrollwheel:        false,
-          streetViewControl:  false,
-          zoomControl:        true,
-          center: new google.maps.LatLng(29.947877,-90.114755),
-          zoom: 15
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
+        var map = new google.maps.Map(document.getElementById("map-canvas"));
 
         var route = new google.maps.KmlLayer({
-          url: "http://mapsengine.google.com/map/kml?mid=zLv_4m-pvGPI.kajQwXoRX7wY"
+          map: map,
+          url: "http://mapsengine.google.com/map/kml?mid=zaIRRFV8XaRQ.k-sSTBCCw1yc"
         });
-        route.setMap(map);
+
+        google.maps.event.addListener(route, "status_changed", function () {
+          if (route.getStatus() === google.maps.KmlLayerStatus.OK) {
+            _.defer(function () {
+              map.setCenter({lat: 29.931092, lng: -90.10376});
+              map.setZoom(15);
+            });
+          }
+        });
 
         var marker = null;
-        
+
         var socket = io.connect("http://secondline-server.herokuapp.com",{
           port: 80, transports: ["xhr-polling"]
         });
