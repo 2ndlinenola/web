@@ -1,0 +1,11 @@
+{
+  "name": "2ndline-nola",
+  "description": "2ndline-nola web app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "coffee-script" : "1.x",
+    "express"       : "3.x",
+    "logfmt"        : "1.x"
+  }
+}
